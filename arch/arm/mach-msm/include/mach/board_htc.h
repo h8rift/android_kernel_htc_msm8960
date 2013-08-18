@@ -173,6 +173,7 @@ int __init parse_tag_hwid(const struct tag *tags);
 int __init parse_tag_skuid(const struct tag *tags);
 int __init parse_tag_engineerid(const struct tag *tags);
 int __init parse_tag_smlog(const struct tag *tags);
+int __init parse_tag_memsize(const struct tag *tags);
 
 int board_mfg_mode(void);
 char *board_serialno(void);
