@@ -3546,7 +3546,7 @@ static void __init tc2_init(void)
 	syn_init_vkeys_tc2();
 
 	register_i2c_devices();
-	tc2_init_panel();
+	tc2_init_fb();
 	/*HTC_WIFI_START */
 	tc2_wifi_init();
 	/*HTC_WIFI_END */
