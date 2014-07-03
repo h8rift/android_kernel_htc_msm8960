@@ -3283,15 +3283,6 @@ static struct platform_device fish_battery_device = {
 };
 #endif
 
-static struct platform_device msm8930_device_ext_otg_sw_vreg __devinitdata = {
-	.name	= GPIO_REGULATOR_DEV_NAME,
-	.id	= 97,
-	.dev	= {
-		.platform_data =
-		 &msm8930_pm8038_gpio_regulator_pdata[MSM8930_GPIO_VREG_ID_EXT_OTG_SW],
-	},
-};
-
 static struct platform_device msm8930_device_rpm_regulator __devinitdata = {
 	.name	= "rpm-regulator",
 	.id	= -1,
@@ -3341,16 +3332,12 @@ static struct platform_device *common_devices[] __initdata = {
 	&msm_device_smd,
 	&msm8960_device_uart_gsbi3,
 	&msm8960_device_uart_gsbi8,
-	
 	&msm_device_saw_core0,
 	&msm_device_saw_core1,
 #ifndef MSM8930_PHASE_2
 	&msm8930_device_ext_l2_vreg,
 #endif
 	&msm8960_device_ssbi_pmic,
-#ifdef MSM8930_PHASE_2
-	&msm8930_device_ext_otg_sw_vreg,
-#endif
 #if defined(CONFIG_MSM_CAMERA) && defined(CONFIG_RAWCHIP)
 	&operaul_msm_rawchip_device,
 #endif
