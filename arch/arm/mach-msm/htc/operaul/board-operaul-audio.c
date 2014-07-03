@@ -23,8 +23,8 @@
 #include <linux/slab.h>
 #include <mach/htc_acoustic_8960.h>
 #include <mach/socinfo.h>
-#include <mach/tfa9887.h>
-#include <mach/rt5501.h>
+#include <linux/tfa9887.h>
+#include <linux/rt5501.h>
 #include <sound/core.h>
 #include <sound/jack.h>
 #include <sound/pcm.h>
