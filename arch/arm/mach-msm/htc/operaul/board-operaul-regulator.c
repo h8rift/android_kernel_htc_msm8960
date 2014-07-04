@@ -170,11 +170,11 @@ VREG_CONSUMERS(S4) = {
 };
 VREG_CONSUMERS(S5) = {
 	REGULATOR_SUPPLY("8038_s5",		NULL),
-	REGULATOR_SUPPLY("krait0",		NULL),
+	REGULATOR_SUPPLY("krait0",		"acpuclk-8930aa"),
 };
 VREG_CONSUMERS(S6) = {
 	REGULATOR_SUPPLY("8038_s6",		NULL),
-	REGULATOR_SUPPLY("krait1",		NULL),
+	REGULATOR_SUPPLY("krait1",		"acpuclk-8930aa"),
 };
 VREG_CONSUMERS(LVS1) = {
 	REGULATOR_SUPPLY("8038_lvs1",		NULL),
@@ -422,7 +422,8 @@ VREG_CONSUMERS(VDD_DIG_CORNER) = {
 	{ \
 		.constraints = { \
 			.name		= _name, \
-			.valid_ops_mask	= REGULATOR_CHANGE_VOLTAGE, \
+			.valid_ops_mask	= REGULATOR_CHANGE_VOLTAGE | \
+				REGULATOR_CHANGE_STATUS, \
 			.min_uV		= _min_uV, \
 			.max_uV		= _max_uV, \
 		}, \
@@ -438,7 +439,6 @@ msm8930_pm8038_gpio_regulator_pdata[] __devinitdata = {
 };
 
 struct regulator_init_data msm8930_pm8038_saw_regulator_core0_pdata =
-	
 	SAW_VREG_INIT(S5, "8038_s5",	       850000, 1300000);
 struct regulator_init_data msm8930_pm8038_saw_regulator_core1_pdata =
 	SAW_VREG_INIT(S6, "8038_s6",	       850000, 1300000);
@@ -510,22 +510,6 @@ int msm8930_pm8038_regulator_pdata_len __devinitdata =
 
 static struct rpm_regulator_consumer_mapping
               msm_rpm_regulator_consumer_mapping[] __devinitdata = {
-	RPM_REG_MAP(L23,            0, 1, "krait0_hfpll", "acpuclk-8930"),
-	RPM_REG_MAP(L23,            0, 2, "krait1_hfpll", "acpuclk-8930"),
-	RPM_REG_MAP(L23,            0, 6, "l2_hfpll",     "acpuclk-8930"),
-	RPM_REG_MAP(L24,            0, 1, "krait0_mem",   "acpuclk-8930"),
-	RPM_REG_MAP(L24,            0, 2, "krait1_mem",   "acpuclk-8930"),
-	RPM_REG_MAP(VDD_DIG_CORNER, 0, 1, "krait0_dig",   "acpuclk-8930"),
-	RPM_REG_MAP(VDD_DIG_CORNER, 0, 2, "krait1_dig",   "acpuclk-8930"),
-
-	RPM_REG_MAP(L23,            0, 1, "krait0_hfpll", "acpuclk-8627"),
-	RPM_REG_MAP(L23,            0, 2, "krait1_hfpll", "acpuclk-8627"),
-	RPM_REG_MAP(L23,            0, 6, "l2_hfpll",     "acpuclk-8627"),
-	RPM_REG_MAP(L24,            0, 1, "krait0_mem",   "acpuclk-8627"),
-	RPM_REG_MAP(L24,            0, 2, "krait1_mem",   "acpuclk-8627"),
-	RPM_REG_MAP(VDD_DIG_CORNER, 0, 1, "krait0_dig",   "acpuclk-8627"),
-	RPM_REG_MAP(VDD_DIG_CORNER, 0, 2, "krait1_dig",   "acpuclk-8627"),
-
 	RPM_REG_MAP(L23,            0, 1, "krait0_hfpll", "acpuclk-8930aa"),
 	RPM_REG_MAP(L23,            0, 2, "krait1_hfpll", "acpuclk-8930aa"),
 	RPM_REG_MAP(L23,            0, 6, "l2_hfpll",     "acpuclk-8930aa"),
@@ -533,14 +517,6 @@ static struct rpm_regulator_consumer_mapping
 	RPM_REG_MAP(L24,            0, 2, "krait1_mem",   "acpuclk-8930aa"),
 	RPM_REG_MAP(VDD_DIG_CORNER, 0, 1, "krait0_dig",   "acpuclk-8930aa"),
 	RPM_REG_MAP(VDD_DIG_CORNER, 0, 2, "krait1_dig",   "acpuclk-8930aa"),
-
-	RPM_REG_MAP(L23,            0, 1, "krait0_hfpll", "acpuclk-8930ab"),
-	RPM_REG_MAP(L23,            0, 2, "krait1_hfpll", "acpuclk-8930ab"),
-	RPM_REG_MAP(L23,            0, 6, "l2_hfpll",     "acpuclk-8930ab"),
-	RPM_REG_MAP(L24,            0, 1, "krait0_mem",   "acpuclk-8930ab"),
-	RPM_REG_MAP(L24,            0, 2, "krait1_mem",   "acpuclk-8930ab"),
-	RPM_REG_MAP(VDD_DIG_CORNER, 0, 1, "krait0_dig",   "acpuclk-8930ab"),
-	RPM_REG_MAP(VDD_DIG_CORNER, 0, 2, "krait1_dig",   "acpuclk-8930ab"),
 };
 
 struct rpm_regulator_platform_data msm8930_pm8038_rpm_regulator_pdata __devinitdata = {
